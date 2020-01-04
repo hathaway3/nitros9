@@ -4325,10 +4325,42 @@ L1267a   mul                 Calculate size of entire window to move
 * Which it should be since all screen widths are even numbers (80, 40, etc)
          pshs  u
          tfr   x,u
+         leay  15,y           Move to the middle of the 32 byte block
 L1267b   pulu  x
-         stx   ,y++
-         subd  #$0002
-         bgt   L1267b
+         stx   -15,y
+         pulu  x
+         stx   -13,y
+         pulu  x
+         stx   -11,y
+         pulu  x
+         stx   -9,y
+         pulu  x
+         stx   -7,y
+         pulu  x
+         stx   -5,y
+         pulu  x
+         stx   -3,y
+         pulu  x
+         stx   -1,y
+         pulu  x
+         stx   1,y
+         pulu  x
+         stx   3,y
+         pulu  x
+         stx   5,y
+         pulu  x
+         stx   7,y
+         pulu  x
+         stx   9,y
+         pulu  x
+         stx   11,y
+         pulu  x
+         stx   13,y
+         pulu  x
+         stx   15,y
+         leay  $20,y          Next 32 bytes to copy
+         subd  #$0020         Just finished moving 32 bytes
+         bgt   L1267b         
          puls  u
          ENDC
          bra   L128A         Exit scroll routine
