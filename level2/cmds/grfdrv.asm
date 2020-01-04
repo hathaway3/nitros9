@@ -4295,7 +4295,7 @@ L124F    pshs  y             Preserve window table ptr
          lda   Wt.SZY,y      Get current Y size
          deca                0 base
          sta   <$009B        Preserve
-         beq   L128A         If window only 1 line high, then no scroll needed
+         lbeq  L128A         If window only 1 line high, then no scroll needed
          ldx   Wt.LStrt,y    Get screen logical start addr. (top of screen)
          ldd   Wt.BRow,y     Get # bytes/text row (8 pixel lines if gfx)
          tfr   x,y           Move screen start addr. to Y
